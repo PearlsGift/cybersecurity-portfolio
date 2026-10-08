@@ -1,0 +1,2143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Onyinyechi Anyim — Cybersecurity analyst and SOC specialist. Portfolio featuring alert investigations, SIEM projects, and threat detection expertise." />
+  <meta name="theme-color" content="#0f1419" />
+  <meta property="og:title" content="Onyinye — Security Operations Portfolio" />
+  <meta property="og:description" content="SOC investigations, threat detection, and security engineering projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://your-domain.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Onyinye — Cybersecurity & SOC Analyst | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0f1419;
+      --bg-alt: #151b26;
+      --bg-secondary: #1a202d;
+      --surface: #252e42;
+      --surface-raised: #2d3748;
+      --line: #3d4761;
+      --line-subtle: #2a3445;
+
+      --text: #f8f9fb;
+      --text-secondary: #d0d8e8;
+      --muted: #8b93a8;
+      --muted-light: #a9b0c4;
+
+      --accent: #00d9ff;
+      --accent-warm: #ff6b35;
+      --success: #2ecc71;
+      --warning: #ffa500;
+      --alert: #e74c3c;
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.24);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.32);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.4);
+      --glow: 0 0 24px rgba(0, 217, 255, 0.15);
+
+      --container: 1280px;
+      --radius: 12px;
+      --radius-lg: 16px;
+
+      --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: "IBM Plex Mono", "Courier New", monospace;
+
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: none;
+    }
+
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .mono {
+      font-family: var(--font-mono);
+    }
+
+    .container {
+      width: min(var(--container), 100% - 2rem);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* ===== Gradients & Accents ===== */
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-border {
+      position: relative;
+      border: 1px solid var(--line);
+    }
+
+    .gradient-border::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(255, 107, 53, 0.1));
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* ===== Header & Nav ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: linear-gradient(180deg, rgba(15, 20, 25, 0.98) 0%, rgba(15, 20, 25, 0.8) 100%);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      min-height: 80px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      color: var(--text);
+    }
+
+    .brand-glyph {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #000;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.12), rgba(255, 107, 53, 0.12));
+      border: 1px solid var(--line);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 920px) {
+      .nav-links {
+        gap: 16px;
+        font-size: 13px;
+      }
+
+      .nav-badge {
+        display: none;
+      }
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding-top: 140px;
+      padding-bottom: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1200px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 217, 255, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      margin: 0 0 20px;
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      max-width: 16ch;
+      color: var(--text);
+    }
+
+    .hero-content .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-content p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 65ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0, 217, 255, 0.1), rgba(255, 107, 53, 0.1));
+      opacity: 0;
+      transition: opacity var(--transition);
+      z-index: -1;
+    }
+
+    .btn:hover::before,
+    .btn:focus-visible::before {
+      opacity: 1;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md), var(--glow);
+      outline: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      border-color: transparent;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      box-shadow: var(--shadow-lg), 0 0 32px rgba(0, 217, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .hero-visual {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 300px;
+    }
+
+    .profile-img-wrapper {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--surface), var(--surface-raised));
+      border: 2px solid var(--line);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .profile-img-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(255, 107, 53, 0.2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .profile-img-wrapper:hover::before {
+      opacity: 1;
+    }
+
+    .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .profile-badge {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 24px;
+      background: rgba(15, 20, 25, 0.92);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-visual {
+        max-width: 240px;
+        justify-self: start;
+      }
+    }
+
+    /* ===== Sections ===== */
+    section {
+      padding: 88px 0;
+    }
+
+    section:nth-child(even) {
+      background: var(--bg-alt);
+    }
+
+    .section-head {
+      margin-bottom: 40px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 75ch;
+    }
+
+    /* ===== Skills ===== */
+    .skills-intro {
+      color: var(--muted-light);
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 16px;
+    }
+
+    .skill-tile {
+      position: relative;
+      height: 110px;
+      background: linear-gradient(135deg, var(--surface), var(--surface-raised));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+      transition: var(--transition);
+      overflow: visible;
+      cursor: pointer;
+    }
+
+    .skill-tile:nth-child(odd) {
+      transform: translateY(0);
+    }
+
+    .skill-tile:nth-child(even) {
+      transform: translateY(8px);
+    }
+
+    .skill-tile:hover,
+    .skill-tile:focus-within {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(255, 107, 53, 0.08));
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md), var(--glow);
+    }
+
+    .skill-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .skill-category {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .skill-tooltip {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      pointer-events: none;
+      background: var(--surface-raised);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 12px;
+      width: 200px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-md);
+      z-index: 10;
+      transition: opacity var(--transition);
+    }
+
+    .skill-tile:hover .skill-tooltip,
+    .skill-tile:focus-within .skill-tooltip {
+      opacity: 1;
+    }
+
+    /* ===== Investigations ===== */
+    .investigations-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .flip-card {
+      perspective: 1000px;
+      min-height: 420px;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-style: preserve-3d;
+      min-height: 420px;
+    }
+
+    .flip-card.flipped .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: linear-gradient(135deg, var(--surface), var(--surface-raised));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .flip-card:hover .flip-face:not(.flip-back) {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg), var(--glow);
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      font-size: 13.5px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-id {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .card-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .severity-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .severity-critical {
+      background: rgba(231, 76, 60, 0.15);
+      color: #ff6b6b;
+      border: 1px solid rgba(231, 76, 60, 0.3);
+    }
+
+    .severity-high {
+      background: rgba(255, 107, 53, 0.15);
+      color: #ff8c42;
+      border: 1px solid rgba(255, 107, 53, 0.3);
+    }
+
+    .severity-medium {
+      background: rgba(255, 165, 0, 0.15);
+      color: #ffa500;
+      border: 1px solid rgba(255, 165, 0, 0.3);
+    }
+
+    .verdict-true {
+      background: rgba(46, 204, 113, 0.15);
+      color: #2ecc71;
+      border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+
+    .verdict-false {
+      background: rgba(52, 152, 219, 0.15);
+      color: #3498db;
+      border: 1px solid rgba(52, 152, 219, 0.3);
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-summary {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--line-subtle);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .meta-value {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .flip-btn {
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: var(--transition);
+    }
+
+    .flip-btn:hover,
+    .flip-btn:focus-visible {
+      background: rgba(0, 217, 255, 0.1);
+      box-shadow: inset 0 0 16px rgba(0, 217, 255, 0.2);
+      outline: none;
+    }
+
+    .breakdown {
+      margin: 0 0 12px;
+      line-height: 1.6;
+    }
+
+    .breakdown-label {
+      color: var(--accent);
+      font-weight: 700;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 900px) {
+      .investigations-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flip-card {
+        min-height: 380px;
+      }
+
+      .flip-inner {
+        min-height: 380px;
+      }
+    }
+
+    /* ===== Projects ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: linear-gradient(135deg, var(--surface), var(--surface-raised));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .project-card:hover::before {
+      left: 100%;
+    }
+
+    .project-card:hover,
+    .project-card:focus-visible {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg), var(--glow);
+      transform: translateY(-6px);
+      outline: none;
+    }
+
+    .project-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .project-card h3 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--line-subtle);
+    }
+
+    .tech-badge {
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(0, 217, 255, 0.08);
+      border: 1px solid rgba(0, 217, 255, 0.3);
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== Certifications ===== */
+    .certs-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .cert-item {
+      border-bottom: 1px solid var(--line-subtle);
+    }
+
+    .cert-item:last-child {
+      border-bottom: none;
+    }
+
+    .cert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 22px;
+      background: var(--surface);
+      transition: background var(--transition);
+    }
+
+    .cert-header:hover,
+    .cert-header:focus-visible {
+      background: rgba(0, 217, 255, 0.04);
+    }
+
+    .cert-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .cert-status {
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .status-completed {
+      background: rgba(46, 204, 113, 0.15);
+      color: #2ecc71;
+      border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+
+    .status-in-progress {
+      background: rgba(0, 217, 255, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(0, 217, 255, 0.3);
+    }
+
+    .cert-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--bg-secondary);
+    }
+
+    .cert-item.open .cert-content {
+      max-height: 360px;
+    }
+
+    .cert-inner {
+      padding: 20px 22px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .cert-img {
+      width: 180px;
+      height: 130px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, var(--surface), var(--surface-raised));
+    }
+
+    .cert-text {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .cert-text p {
+      margin: 0;
+    }
+
+    @media (max-width: 720px) {
+      .cert-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-img {
+        width: 100%;
+      }
+    }
+
+    /* ===== Contact ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .contact-item {
+      background: linear-gradient(135deg, var(--surface), var(--surface-raised));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover,
+    .contact-item:focus-visible {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md), var(--glow);
+      transform: translateY(-3px);
+      outline: none;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(0, 217, 255, 0.12), rgba(255, 107, 53, 0.12));
+      border: 1px solid var(--accent);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .contact-text h3 {
+      margin: 0 0 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-text p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--text);
+      font-family: var(--font-mono);
+    }
+
+    @media (max-width: 640px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== Modal ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 24px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal {
+      position: relative;
+      background: var(--surface-raised);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      max-width: 600px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 28px;
+      box-shadow: var(--shadow-lg);
+      animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+
+    .modal::-webkit-scrollbar-thumb {
+      background: var(--line);
+      border-radius: 4px;
+    }
+
+    .modal::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 20px;
+      transition: var(--transition);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      border-color: var(--alert);
+      color: var(--alert);
+      outline: none;
+    }
+
+    .modal-tag {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      background: rgba(0, 217, 255, 0.08);
+      border-radius: 4px;
+    }
+
+    .modal h2 {
+      margin: 0 0 20px;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .modal h3 {
+      margin: 24px 0 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .modal p,
+    .modal ul {
+      margin: 0 0 12px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .modal ul {
+      padding-left: 18px;
+    }
+
+    .modal li {
+      margin-bottom: 6px;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ===== Accessibility & Animations ===== */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .nav-wrapper {
+        gap: 16px;
+        min-height: 70px;
+      }
+    }
+
+    /* =====================================================
+       MOBILE OPTIMIZATION ADJUSTMENTS
+       ===================================================== */
+
+    /* ===== Mobile nav: hamburger ===== */
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1;
+      place-items: center;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media (max-width: 920px) {
+      .brand { display: none; }
+      .nav-wrapper { justify-content: flex-end; }
+      .menu-toggle { display: grid; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 20px 16px;
+        background: rgba(15, 20, 25, 0.98);
+        border-bottom: 1px solid var(--line-subtle);
+        box-shadow: var(--shadow-md);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        padding: 14px 4px;
+        font-size: 15px;
+        border-bottom: 1px solid var(--line-subtle);
+      }
+
+      .nav-links a:last-of-type { border-bottom: none; }
+      .nav-links a::after { display: none; }
+    }
+
+    /* ===== Investigation cards: stacking + scroll ===== */
+    .flip-card { position: relative; z-index: 1; }
+    .flip-card.flipped { z-index: 20; }
+
+    .flip-back {
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+
+    .flip-back > * { flex-shrink: 0; }
+
+    .flip-back > .flip-btn:first-child {
+      position: sticky;
+      top: -24px;
+      margin-top: 0;
+      z-index: 2;
+      background: var(--surface);
+    }
+
+    .flip-back::-webkit-scrollbar { width: 6px; }
+    .flip-back::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+    /* ===== Certifications: responsive layout ===== */
+    .cert-item.open .cert-content { max-height: 1200px; }
+
+    .cert-header { text-align: left; }
+    .cert-inner { grid-template-columns: 240px 1fr; gap: 24px; }
+    .cert-text:only-child { grid-column: 1 / -1; }
+
+    .cert-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      background: var(--bg);
+    }
+
+    @media (max-width: 720px) {
+      .cert-header {
+        flex-wrap: wrap;
+        padding: 14px 16px;
+        gap: 10px;
+      }
+
+      .cert-name { font-size: 14px; flex-basis: 100%; }
+      .cert-status { font-size: 10px; padding: 5px 10px; }
+
+      .cert-inner {
+        grid-template-columns: 1fr;
+        padding: 16px;
+        gap: 16px;
+      }
+
+      .cert-img { max-width: 100%; }
+      .cert-text { font-size: 13.5px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="container nav-wrapper">
+      <div class="brand">
+        <div class="brand-glyph">O</div>
+        <span>Onyinyechi<span style="color: var(--accent);"> </span>Anyim</span>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#skills">Skills &amp; tools</a>
+        <a href="#investigations">Investigations</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#contact">Contact</a>
+        <div class="nav-badge">
+          <span class="status-dot"></span>
+          Available
+        </div>
+      </div>
+
+      <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Security Analyst · SOC Operations</p>
+          <h1>Onyinyechi Anyim</h1>
+          <p>Security operations specialist with hands-on expertise in SOC investigations, SIEM engineering, threat detection, and incident response. Currently based in Lagos, deepening my cybersecurity foundations through advanced training.</p>
+
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#investigations">
+              ↓ View investigations
+            </a>
+            <a class="btn" href="#projects">
+              Explore projects
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+  <div class="profile-img-wrapper">
+    <img 
+      src="onyinye_soc_terminal.gif" 
+      alt="SOC Security Operations Terminal"
+      class="soc-terminal-gif"
+    >
+
+    <div class="profile-badge">
+      <span class="status-dot"></span>
+      <span>Open to opportunities</span>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <h2>Technical skills &amp; tools</h2>
+          <p>Proficiency developed through hands-on labs, real-time SOC alert investigations, and security projects across multiple platforms and threat landscapes.</p>
+        </div>
+
+        <p class="skills-intro">SIEM · Threat Analysis · Network Monitoring · Malware Investigation · Security Automation · Incident Response</p>
+
+        <div class="skills-grid">
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">Wazuh</div>
+            <div class="skill-category">SIEM</div>
+            <div class="skill-tooltip">Deployed and maintained Wazuh agents across multiple Windows and Linux hosts. Configured rules, dashboards, and automated alert responses for file integrity monitoring and log correlation.</div>
+          </div>
+
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">Wireshark</div>
+            <div class="skill-category">Network Analysis</div>
+            <div class="skill-tooltip">Captured, filtered, and analyzed .pcap files to investigate suspicious network traffic, identify anomalies, and trace lateral movement.</div>
+          </div>
+
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">VirusTotal</div>
+            <div class="skill-category">File Intelligence</div>
+            <div class="skill-tooltip">Submitted file hashes and URLs for reputation analysis across 60+ antivirus engines. Used for threat assessment and correlation with alert data.</div>
+          </div>
+
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">Metasploit</div>
+            <div class="skill-category">Exploitation</div>
+            <div class="skill-tooltip">Practiced hands-on exploitation techniques against vulnerable targets. Used for penetration testing labs and understanding attack vectors.</div>
+          </div>
+
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">Kali Linux</div>
+            <div class="skill-category">Penetration Testing</div>
+            <div class="skill-tooltip">Primary operating system for security operations, tool development, and hands-on cybersecurity coursework.</div>
+          </div>
+
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">LetsDefend</div>
+            <div class="skill-category">SOC Training</div>
+            <div class="skill-tooltip">Completed 50+ real-world SOC cases covering alert triage, evidence correlation, and incident response workflows.</div>
+          </div>
+
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">Shodan</div>
+            <div class="skill-category">Asset Discovery</div>
+            <div class="skill-tooltip">Used for internet-facing asset enumeration, exposure assessment, and security research during compliance audits.</div>
+          </div>
+
+          <div class="skill-tile" tabindex="0">
+            <div class="skill-name">any.run</div>
+            <div class="skill-category">Malware Analysis</div>
+            <div class="skill-tooltip">Interactive sandbox for behavioral malware analysis. Used to understand malicious executable behavior and extract IOCs.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Investigations -->
+    <section id="investigations">
+      <div class="container">
+        <div class="section-head">
+          <h2>Alert investigations</h2>
+          <p>Real alert cases demonstrating SOC analyst workflow: evidence correlation, threat assessment, and incident response decision-making. Click a card to read the full investigation.</p>
+        </div>
+
+        <div class="investigations-grid">
+          <!-- SOC137 -->
+          <article class="flip-card" id="flip-soc137">
+            <div class="flip-inner">
+              <!-- Front -->
+              <div class="flip-face">
+                <div class="card-header">
+                  <div>
+                    <div class="card-id">SOC137</div>
+                    <h3 class="card-title">Macro-Enabled Malware Download</h3>
+                  </div>
+                </div>
+
+                <div class="badges">
+                  <span class="severity-badge severity-high">Malware</span>
+                  <span class="severity-badge verdict-true">True Positive</span>
+                  <span class="severity-badge" style="background: rgba(100, 200, 255, 0.15); color: #64c8ff; border: 1px solid rgba(100, 200, 255, 0.3);">T1204</span>
+                </div>
+
+                <p class="card-summary">Macro-enabled .docm file contained AutoOpen macro invoking PowerShell to download second-stage payload. Endpoint security blocked execution before C2 communication.</p>
+
+                <div class="card-meta">
+                  <div class="meta-item">
+                    <div class="meta-label">C2 Reached</div>
+                    <div class="meta-value">No</div>
+                  </div>
+                  <div class="meta-item">
+                    <div class="meta-label">Verdict</div>
+                    <div class="meta-value">Malicious</div>
+                  </div>
+                </div>
+
+                <button class="flip-btn" type="button" data-flip-target="flip-soc137">Read full investigation →</button>
+              </div>
+
+              <!-- Back -->
+              <div class="flip-face flip-back">
+                <button class="flip-btn" type="button" data-flip-target="flip-soc137">← Back</button>
+
+                <p class="breakdown"><span class="breakdown-label">File:</span> INVOICE PACKAGE LINK TO DOWNLOAD.docm (16.66 KB)</p>
+                <p class="breakdown"><span class="breakdown-label">Source:</span> 172.16.17.37 (internal network)</p>
+                <p class="breakdown"><span class="breakdown-label">Device Action:</span> Blocked</p>
+
+                <p class="breakdown"><span class="breakdown-label">Investigation:</span> File hash analysis in VirusTotal flagged the document as malicious. Macro extraction revealed NewMacros.bas using Shell.Application to invoke PowerShell with encoded command. Network logs showed no outbound connection attempts.</p>
+
+                <p class="breakdown"><span class="breakdown-label">MITRE ATT&amp;CK:</span> T1204 (User Execution), T1059 (Command and Scripting Interpreter)</p>
+
+                <p class="breakdown"><span class="breakdown-label">Remediation:</span> Document quarantined. Endpoint contained. No further user education recommended (blocked at mail gateway).</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- SOC138 -->
+          <article class="flip-card" id="flip-soc138">
+            <div class="flip-inner">
+              <div class="flip-face">
+                <div class="card-header">
+                  <div>
+                    <div class="card-id">SOC138</div>
+                    <h3 class="card-title">CVE-2017-11882 Exploitation</h3>
+                  </div>
+                </div>
+
+                <div class="badges">
+                  <span class="severity-badge severity-critical">Critical</span>
+                  <span class="severity-badge verdict-true">True Positive</span>
+                  <span class="severity-badge" style="background: rgba(100, 200, 255, 0.15); color: #64c8ff; border: 1px solid rgba(100, 200, 255, 0.3);">T1112</span>
+                </div>
+
+                <p class="card-summary">Excel macro workbook exploited CVE-2017-11882, executed PowerShell payload, and established outbound C2 communication. Device allowed execution.</p>
+
+                <div class="card-meta">
+                  <div class="meta-item">
+                    <div class="meta-label">C2 Reached</div>
+                    <div class="meta-value">Yes</div>
+                  </div>
+                  <div class="meta-item">
+                    <div class="meta-label">Remediation</div>
+                    <div class="meta-value">Contained</div>
+                  </div>
+                </div>
+
+                <button class="flip-btn" type="button" data-flip-target="flip-soc138">Read full investigation →</button>
+              </div>
+
+              <div class="flip-face flip-back">
+                <button class="flip-btn" type="button" data-flip-target="flip-soc138">← Back</button>
+
+                <p class="breakdown"><span class="breakdown-label">File:</span> ORDER SHEET &amp; SPEC.xlsm (2.66 MB)</p>
+                <p class="breakdown"><span class="breakdown-label">MD5:</span> 7ccf88c0bbe3b29bf19d877c4596a8d4</p>
+                <p class="breakdown"><span class="breakdown-label">Host:</span> Sofia (Windows 10)</p>
+
+                <p class="breakdown"><span class="breakdown-label">Investigation:</span> VirusTotal analysis showed 45/64 vendors flagged the file. Detonated in sandbox and confirmed exploitation of CVE-2017-11882 (Equation Editor RCE). Analyzed host Sofia and found PowerShell execution logs and outbound DNS queries to suspicious IPs (177.13.24.48).</p>
+
+                <p class="breakdown"><span class="breakdown-label">Impact:</span> Malware executed successfully. C2 communication established. Registry modifications detected.</p>
+
+                <p class="breakdown"><span class="breakdown-label">MITRE ATT&amp;CK:</span> T1112 (Modify Registry), T1041 (Exfiltration Over C2)</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- SOC104 -->
+          <article class="flip-card" id="flip-soc104">
+            <div class="flip-inner">
+              <div class="flip-face">
+                <div class="card-header">
+                  <div>
+                    <div class="card-id">SOC104</div>
+                    <h3 class="card-title">Invoice.exe Malware Execution</h3>
+                  </div>
+                </div>
+
+                <div class="badges">
+                  <span class="severity-badge severity-critical">Critical</span>
+                  <span class="severity-badge verdict-true">True Positive</span>
+                  <span class="severity-badge" style="background: rgba(100, 200, 255, 0.15); color: #64c8ff; border: 1px solid rgba(100, 200, 255, 0.3);">T1204</span>
+                </div>
+
+                <p class="card-summary">Malicious executable allowed to execute on AdamPRD, followed by confirmed C2 communication and lateral movement attempts. Immediate containment required.</p>
+
+                <div class="card-meta">
+                  <div class="meta-item">
+                    <div class="meta-label">C2 Reached</div>
+                    <div class="meta-value">Yes</div>
+                  </div>
+                  <div class="meta-item">
+                    <div class="meta-label">Action</div>
+                    <div class="meta-value">Isolate</div>
+                  </div>
+                </div>
+
+                <button class="flip-btn" type="button" data-flip-target="flip-soc104">Read full investigation →</button>
+              </div>
+
+              <div class="flip-face flip-back">
+                <button class="flip-btn" type="button" data-flip-target="flip-soc104">← Back</button>
+
+                <p class="breakdown"><span class="breakdown-label">File:</span> Invoice.exe (473 KB)</p>
+                <p class="breakdown"><span class="breakdown-label">MD5:</span> f83fb9ce6a83da58b20685c1d7e1e546</p>
+                <p class="breakdown"><span class="breakdown-label">Source:</span> 10.15.1.24 (internal)</p>
+
+                <p class="breakdown"><span class="breakdown-label">Investigation:</span> VirusTotal confirmed malicious. Host logs showed successful execution. Network telemetry revealed outbound connections to C2 server and SMB enumeration attempts to other hosts on the network.</p>
+
+                <p class="breakdown"><span class="breakdown-label">Verdict:</span> True Positive. Malware executed and established C2. Lateral movement activity detected.</p>
+
+                <p class="breakdown"><span class="breakdown-label">Response:</span> Host immediately isolated from network. Credential reset initiated for affected user. Threat hunting launched on other hosts.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- SOC140 -->
+          <article class="flip-card" id="flip-soc140">
+            <div class="flip-inner">
+              <div class="flip-face">
+                <div class="card-header">
+                  <div>
+                    <div class="card-id">SOC140</div>
+                    <h3 class="card-title">Phishing Email with Malicious Attachment</h3>
+                  </div>
+                </div>
+
+                <div class="badges">
+                  <span class="severity-badge severity-high">Phishing</span>
+                  <span class="severity-badge verdict-true">True Positive</span>
+                  <span class="severity-badge" style="background: rgba(100, 200, 255, 0.15); color: #64c8ff; border: 1px solid rgba(100, 200, 255, 0.3);">T1566</span>
+                </div>
+
+                <p class="card-summary">Phishing email with malicious PDF attachment impersonating a purchase order. Email blocked before delivery. Attachment flagged by 31/62 vendors.</p>
+
+                <div class="card-meta">
+                  <div class="meta-item">
+                    <div class="meta-label">Delivered</div>
+                    <div class="meta-value">No</div>
+                  </div>
+                  <div class="meta-item">
+                    <div class="meta-label">Verdict</div>
+                    <div class="meta-value">Blocked</div>
+                  </div>
+                </div>
+
+                <button class="flip-btn" type="button" data-flip-target="flip-soc140">Read full investigation →</button>
+              </div>
+
+              <div class="flip-face flip-back">
+                <button class="flip-btn" type="button" data-flip-target="flip-soc140">← Back</button>
+
+                <p class="breakdown"><span class="breakdown-label">From:</span> aaronluo@cmail.carleton.ca (spoofed)</p>
+                <p class="breakdown"><span class="breakdown-label">To:</span> mark@letdefend.io (internal user)</p>
+                <p class="breakdown"><span class="breakdown-label">Subject:</span> Urgent: Purchase Order Approval Required</p>
+
+                <p class="breakdown"><span class="breakdown-label">Investigation:</span> Email body used obfuscated text and urgency language to bypass content filters. Attachment hash matched known trojan families. Sender domain reputation check showed recent registration.</p>
+
+                <p class="breakdown"><span class="breakdown-label">Action:</span> Email rule created to block sender domain. User awareness training recommended.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- SOC119 -->
+          <article class="flip-card" id="flip-soc119">
+            <div class="flip-inner">
+              <div class="flip-face">
+                <div class="card-header">
+                  <div>
+                    <div class="card-id">SOC119</div>
+                    <h3 class="card-title">Legitimate Software Download</h3>
+                  </div>
+                </div>
+
+                <div class="badges">
+                  <span class="severity-badge severity-medium">Proxy Alert</span>
+                  <span class="severity-badge verdict-false">False Positive</span>
+                  <span class="severity-badge" style="background: rgba(100, 200, 255, 0.15); color: #64c8ff; border: 1px solid rgba(100, 200, 255, 0.3);">T1204</span>
+                </div>
+
+                <p class="card-summary">Proxy alert for executable download. Investigation revealed legitimate WinRAR download from official source. No malicious activity.</p>
+
+                <div class="card-meta">
+                  <div class="meta-item">
+                    <div class="meta-label">Verdict</div>
+                    <div class="meta-value">Legitimate</div>
+                  </div>
+                  <div class="meta-item">
+                    <div class="meta-label">Action</div>
+                    <div class="meta-value">Whitelist</div>
+                  </div>
+                </div>
+
+                <button class="flip-btn" type="button" data-flip-target="flip-soc119">Read full investigation →</button>
+              </div>
+
+              <div class="flip-face flip-back">
+                <button class="flip-btn" type="button" data-flip-target="flip-soc119">← Back</button>
+
+                <p class="breakdown"><span class="breakdown-label">User:</span> Susie</p>
+                <p class="breakdown"><span class="breakdown-label">Host:</span> SusieHost (172.16.17.5)</p>
+                <p class="breakdown"><span class="breakdown-label">Destination:</span> win-rar.com (official domain)</p>
+
+                <p class="breakdown"><span class="breakdown-label">Investigation:</span> URL reputation check confirmed official WinRAR website. File signature matched legitimate software. User had legitimate business need for the tool.</p>
+
+                <p class="breakdown"><span class="breakdown-label">Lesson:</span> URL and domain reputation analysis is critical for reducing false positives. Not all executable downloads are malicious.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Security projects</h2>
+          <p>Hands-on labs and engineering projects across SIEM deployment, detection engineering, security architecture, and applied cryptography.</p>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card" tabindex="0" role="button" data-project="wazuh" aria-label="Open Wazuh SIEM home lab project">
+            <div class="project-tag">SIEM &amp; Monitoring</div>
+            <h3>Wazuh SIEM Home Lab</h3>
+            <p>Deployed a multi-host SIEM environment with centralized log collection, FIM rules, and custom detection logic.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Wazuh</span>
+              <span class="tech-badge">VirtualBox</span>
+              <span class="tech-badge">Ubuntu</span>
+            </div>
+          </div>
+
+          <div class="project-card" tabindex="0" role="button" data-project="bruteforce" aria-label="Open brute force detection rule project">
+            <div class="project-tag">Detection Engineering</div>
+            <h3>Brute Force Detection Rule</h3>
+            <p>Engineered a custom Wazuh rule to detect failed login patterns and flag suspicious successful logins.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Wazuh</span>
+              <span class="tech-badge">Windows Logs</span>
+              <span class="tech-badge">Rules</span>
+            </div>
+          </div>
+
+          <div class="project-card" tabindex="0" role="button" data-project="stego" aria-label="Open steganography lab project">
+            <div class="project-tag">Digital Forensics</div>
+            <h3>Steganography Lab</h3>
+            <p>Explored hiding and extracting secret data within image files using steganographic techniques.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Steghide</span>
+              <span class="tech-badge">Kali Linux</span>
+              <span class="tech-badge">Forensics</span>
+            </div>
+          </div>
+
+          <div class="project-card" tabindex="0" role="button" data-project="airport" aria-label="Open airport security consultant project">
+            <div class="project-tag">Security Architecture</div>
+            <h3>Airport Security Framework</h3>
+            <p>Designed a comprehensive defense-in-depth security architecture for a mid-sized airport.</p>
+            <div class="project-tech">
+              <span class="tech-badge">CIA Triad</span>
+              <span class="tech-badge">Zero Trust</span>
+              <span class="tech-badge">Design</span>
+            </div>
+          </div>
+
+          <div class="project-card" tabindex="0" role="button" data-project="cipherbreach" aria-label="Open Operation CipherBreach CTF project">
+            <div class="project-tag">Cryptography</div>
+            <h3>Operation CipherBreach CTF</h3>
+            <p>Completed a 9-level CTF covering RSA, hashing, digital signatures, PKI, and key stretching.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Cryptography</span>
+              <span class="tech-badge">CTF</span>
+              <span class="tech-badge">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+      <div class="container">
+        <div class="section-head">
+          <h2>Certifications &amp; training</h2>
+          <p>Industry-recognized credentials and structured learning paths in security operations, Python automation, and applied cybersecurity.</p>
+        </div>
+
+        <div class="certs-container">
+          <div class="cert-item">
+            <button class="cert-header" type="button" data-cert-toggle="cert-1" aria-expanded="false">
+              <h3 class="cert-name">CompTIA Security+ (SY0-701)</h3>
+              <span class="cert-status status-in-progress">In progress</span>
+            </button>
+            <div class="cert-content" id="cert-1">
+              <div class="cert-inner">
+                <p class="cert-text">Expected completion in September 2026. This vendor-neutral certification covers core security concepts, risk management, cryptography, and network defense — essential for SOC analyst advancement.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-item">
+            <button class="cert-header" type="button" data-cert-toggle="cert-2" aria-expanded="false">
+              <h3 class="cert-name">GOMYCODE — Cybersecurity Track</h3>
+              <span class="cert-status status-completed">Completed</span>
+            </button>
+            <div class="cert-content" id="cert-2">
+              <div class="cert-inner">
+                <img src="GOMYCODE CERT.png" class="cert-img" alt="GOMYCODE cybersecurity track certificate" />
+                <p class="cert-text">Completed an intensive, hands-on cybersecurity bootcamp covering threat detection, malware analysis, SIEM deployment, penetration testing, and incident response workflows. Strong foundation in SOC operations and security engineering.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-item">
+            <button class="cert-header" type="button" data-cert-toggle="cert-3" aria-expanded="false">
+              <h3 class="cert-name">LetsDefend — SOC Analyst Learning Path</h3>
+              <span class="cert-status status-completed">Completed</span>
+            </button>
+            <div class="cert-content" id="cert-3">
+              <div class="cert-inner">
+                <img src="LetsDefend Cert.jpeg" class="cert-img" alt="LetsDefend SOC analyst path certificate" />
+                <p class="cert-text">Completed 50+ real-world SOC cases on the LetsDefend platform. Gained practical experience in alert triage, evidence correlation, threat assessment, and incident response decision-making in a realistic SOC environment.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-item">
+            <button class="cert-header" type="button" data-cert-toggle="cert-4" aria-expanded="false">
+              <h3 class="cert-name">Cisco Python Essentials 1</h3>
+              <span class="cert-status status-completed">Completed</span>
+            </button>
+            <div class="cert-content" id="cert-4">
+              <div class="cert-inner">
+                <img src="Python Essential 1.png" class="cert-img" alt="Cisco Python Essentials 1 certificate" />
+                <p class="cert-text">Completed Cisco's Python Essentials course, building foundational automation and scripting skills necessary for security operations, log parsing, and threat intelligence tasks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2>Get in touch</h2>
+          <p>Open to collaboration, mentorship opportunities, and SOC analyst roles. Let's connect.</p>
+        </div>
+
+        <div class="contact-grid">
+          <a class="contact-item" href="https://linkedin.com/in/onyinyechi-anyim-345b15382" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon">in</div>
+            <div class="contact-text">
+              <h3>LinkedIn</h3>
+              <p>onyinyechi-anyim</p>
+            </div>
+          </a>
+
+          <a class="contact-item" href="mailto:anyimonyinye2@gmail.com">
+            <div class="contact-icon">@</div>
+            <div class="contact-text">
+              <h3>Email</h3>
+              <p>anyimonyinye2@gmail.com</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Onyinyechi Anyim. Cybersecurity portfolio updated as investigations are completed.</p>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" aria-label="Close project details">×</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script>
+    const projectData = {
+      wazuh: {
+        title: "Wazuh SIEM Home Lab Setup",
+        tag: "siem-and-monitoring",
+        html: `
+          <h3>Project Overview</h3>
+          <p>Built a multi-host SIEM environment using Wazuh on Ubuntu and Windows virtual machines. Configured centralized log collection, file integrity monitoring, and custom detection rules to simulate real SOC operations.</p>
+
+          <h3>Architecture</h3>
+          <ul>
+            <li><strong>Wazuh Manager:</strong> Ubuntu 20.04 LTS running Wazuh manager, agent, and Kibana dashboard</li>
+            <li><strong>Agents:</strong> Deployed on Windows 10 and Windows Server 2022 for endpoint telemetry</li>
+            <li><strong>Infrastructure:</strong> VirtualBox VMs on a single host, bridged networking for simulation</li>
+          </ul>
+
+          <h3>Key Configurations</h3>
+          <ul>
+            <li>Configured Wazuh agents to forward Windows Event Logs (Security, System, Application)</li>
+            <li>Set up File Integrity Monitoring (FIM) on critical system directories</li>
+            <li>Created custom detection rules based on MITRE ATT&CK techniques</li>
+            <li>Built Kibana dashboards for real-time alert visibility</li>
+          </ul>
+
+          <h3>Lessons Learned</h3>
+          <p>This project reinforced the importance of centralized logging, proper agent configuration, and alert tuning. Discovered how easily alerts can be triggered (and how easily they can be false positives) without proper baseline establishment and rule refinement.</p>
+        `
+      },
+      bruteforce: {
+        title: "Custom Brute Force Detection Rule",
+        tag: "detection-engineering",
+        html: `
+          <h3>Objective</h3>
+          <p>Create a Wazuh detection rule to identify brute-force login attempts against a Windows Server and flag suspicious successful logins that follow failed attempts.</p>
+
+          <h3>Rule Logic</h3>
+          <ul>
+            <li><strong>Trigger 1:</strong> 5+ failed login attempts (Event ID 4625) within a 5-minute window</li>
+            <li><strong>Trigger 2:</strong> Successful login (Event ID 4624) within 10 minutes following the failure threshold</li>
+            <li><strong>Alert Level:</strong> Medium (5/10)</li>
+          </ul>
+
+          <h3>Implementation</h3>
+          <p>Wazuh XML rule configuration using event log correlation and time-based grouping. Tested against both legitimate login sequences and simulated brute-force attacks using Hydra.</p>
+
+          <h3>Results</h3>
+          <p>Rule successfully detected attack patterns while maintaining low false-positive rates. Refined thresholds based on baseline activity patterns to avoid alert fatigue.</p>
+        `
+      },
+      stego: {
+        title: "Steganography Lab",
+        tag: "digital-forensics",
+        html: `
+          <h3>Objective</h3>
+          <p>Understand and demonstrate steganography techniques — hiding secret data within innocuous files — and explore forensic detection methods.</p>
+
+          <h3>Tools &amp; Techniques</h3>
+          <ul>
+            <li><strong>Steghide:</strong> Embedded hidden messages and files within PNG/JPEG images</li>
+            <li><strong>Detection:</strong> Used statistical analysis and entropy checks to identify steganographic content</li>
+            <li><strong>Kali Tools:</strong> Experimented with other steganography tools for comparison</li>
+          </ul>
+
+          <h3>Key Findings</h3>
+          <p>Steganography is difficult to detect without proper forensic tools. Modern image analysis techniques can identify statistical anomalies that suggest hidden content, but sophisticated methods remain elusive.</p>
+
+          <h3>Security Implications</h3>
+          <p>Steganography is commonly used by advanced adversaries to exfiltrate data or communicate covertly. SOC analysts must be familiar with detection techniques and maintain vigilance for suspicious file activity.</p>
+        `
+      },
+      airport: {
+        title: "Airport Security Framework",
+        tag: "security-architecture",
+        html: `
+          <h3>Scenario</h3>
+          <p>Design a comprehensive security architecture for a mid-sized international airport. The framework must address physical security, cybersecurity, data protection, and incident response.</p>
+
+          <h3>Framework Components</h3>
+
+          <h4>CIA Triad Application</h4>
+          <ul>
+            <li><strong>Confidentiality:</strong> Encrypt sensitive passenger and operational data; control access to critical systems</li>
+            <li><strong>Integrity:</strong> Implement system monitoring and audit logging; secure change management processes</li>
+            <li><strong>Availability:</strong> Redundant systems for air traffic control, baggage handling, and passenger services</li>
+          </ul>
+
+          <h4>AAA (Authentication, Authorization, Accounting)</h4>
+          <ul>
+            <li>Multi-factor authentication for employee and contractor access</li>
+            <li>Role-based access control (RBAC) for airport systems</li>
+            <li>Comprehensive logging and audit trails for compliance</li>
+          </ul>
+
+          <h4>Zero Trust Architecture</h4>
+          <ul>
+            <li>Verify every user and device, regardless of location</li>
+            <li>Micro-segmentation of airport networks (terminal, runway ops, administrative)</li>
+            <li>Continuous monitoring and threat detection</li>
+          </ul>
+
+          <h4>Deception Technology</h4>
+          <ul>
+            <li>Honeypots within IT infrastructure to detect intruders early</li>
+            <li>Fake credentials and canary files to identify credential theft</li>
+            <li>Fake terminal services to redirect and study attacker behavior</li>
+          </ul>
+
+          <h3>Outcome</h3>
+          <p>A layered, defense-in-depth strategy that balances security with operational continuity. Demonstrates holistic thinking across technical, physical, and organizational security domains.</p>
+        `
+      },
+      cipherbreach: {
+        title: "Operation CipherBreach CTF",
+        tag: "cryptography",
+        html: `
+          <h3>Challenge Overview</h3>
+          <p>A 9-level Capture-the-Flag (CTF) challenge focused on cryptographic concepts, digital signatures, PKI, and key management. Each level introduced new cryptographic techniques and attack vectors.</p>
+
+          <h3>Levels &amp; Techniques</h3>
+
+          <h4>Level 1-3: Basic Hashing &amp; Encoding</h4>
+          <ul>
+            <li>Reversed MD5, SHA1 hashes using online databases and rainbow tables</li>
+            <li>Decoded Base64 and hexadecimal encoded messages</li>
+          </ul>
+
+          <h4>Level 4-6: RSA &amp; Asymmetric Cryptography</h4>
+          <ul>
+            <li>Factored weak RSA keys (small primes)</li>
+            <li>Recovered plaintext from ciphertext using vulnerable key generation</li>
+          </ul>
+
+          <h4>Level 7-9: Digital Signatures &amp; PKI</h4>
+          <ul>
+            <li>Verified and forged digital signatures using flawed implementations</li>
+            <li>Exploited key stretching weaknesses to crack passwords</li>
+            <li>Reconstructed certificate chains and identified trust path vulnerabilities</li>
+          </ul>
+
+          <h3>Tools Used</h3>
+          <p>Python (Crypto library), OpenSSL, John the Ripper, custom scripts for cryptanalysis.</p>
+
+          <h3>Key Learnings</h3>
+          <p>Cryptography is only secure when correctly implemented. Small mistakes in key generation, padding, or signature schemes can completely undermine security. This CTF reinforced the importance of using well-tested, standard cryptographic libraries and understanding the limitations of cryptographic primitives.</p>
+        `
+      }
+    };
+
+    // Flip cards
+    document.querySelectorAll("[data-flip-target]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const cardId = btn.dataset.flipTarget;
+        const card = document.getElementById(cardId);
+        if (card) card.classList.toggle("flipped");
+      });
+    });
+
+    // Project modals
+    document.querySelectorAll("[data-project]").forEach((card) => {
+      const openModal = () => {
+        const projectId = card.dataset.project;
+        const data = projectData[projectId];
+        if (!data) return;
+
+        document.getElementById("modal-content").innerHTML =
+          `<span class="modal-tag">${data.tag}</span><h2 id="modal-title">${data.title}</h2>${data.html}`;
+
+        const overlay = document.getElementById("modal-overlay");
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden", "false");
+      };
+
+      card.addEventListener("click", openModal);
+      card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal();
+        }
+      });
+    });
+
+    // Cert accordion
+    document.querySelectorAll("[data-cert-toggle]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const certId = btn.dataset.certToggle;
+        const panel = document.getElementById(certId);
+        const item = btn.closest(".cert-item");
+        const isOpen = item.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(isOpen));
+      });
+    });
+
+    // Modal close
+    document.getElementById("modal-overlay").addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById("modal-overlay").classList.remove("open");
+        document.getElementById("modal-overlay").setAttribute("aria-hidden", "true");
+      }
+    });
+
+    document.querySelector(".modal-close").addEventListener("click", () => {
+      document.getElementById("modal-overlay").classList.remove("open");
+      document.getElementById("modal-overlay").setAttribute("aria-hidden", "true");
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.getElementById("modal-overlay").classList.remove("open");
+        document.getElementById("modal-overlay").setAttribute("aria-hidden", "true");
+      }
+    });
+
+    // Mobile menu
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.textContent = open ? "✕" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach((a) =>
+      a.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      })
+    );
+  </script>
+</body>
+</html>
