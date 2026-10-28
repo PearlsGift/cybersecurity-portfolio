@@ -4,14 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Onyinyechi Anyim — Cybersecurity analyst and SOC specialist. Portfolio featuring alert investigations, SIEM projects, and threat detection expertise." />
+  <meta name="description" content="Onyinyechi Anyim — IT support and cybersecurity portfolio. SOC lab investigations, SIEM projects, and hands-on troubleshooting." />
   <meta name="theme-color" content="#0f1419" />
-  <meta property="og:title" content="Onyinye — Security Operations Portfolio" />
-  <meta property="og:description" content="SOC investigations, threat detection, and security engineering projects." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://your-domain.com/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <title>Onyinye — Cybersecurity & SOC Analyst | Portfolio</title>
+  <meta property="og:title" content="Onyinyechi Anyim — IT Support & Cybersecurity Portfolio" />
+  <meta property="og:description" content="SOC lab investigations, Wazuh SIEM projects, and hands-on security labs." /><meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <title>Onyinyechi Anyim — IT Support & Cybersecurity Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,7 +58,23 @@
     html {
       scroll-behavior: smooth;
     }
+    /* ===== About ===== */
+    .about-text {
+      max-width: 75ch;
+    }
 
+    .about-text p {
+      margin: 0 0 16px;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .about-tags {
+      border-top: none;
+      padding-top: 8px;
+      margin-top: 8px;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -1368,6 +1382,7 @@
       </div>
 
       <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
         <a href="#skills">Skills &amp; tools</a>
         <a href="#investigations">Investigations</a>
         <a href="#projects">Projects</a>
@@ -1388,10 +1403,9 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-content">
-          <p class="eyebrow">Security Analyst · SOC Operations</p>
+          <p class="eyebrow">IT Support · Cybersecurity</p>
           <h1>Onyinyechi Anyim</h1>
-          <p>Security operations specialist with hands-on expertise in SOC investigations, SIEM engineering, threat detection, and incident response. Currently based in Lagos, deepening my cybersecurity foundations through advanced training.</p>
-
+          <p>Cybersecurity student in Lagos with hands-on lab experience in security monitoring, troubleshooting, and incident investigation. Looking for remote IT support roles.</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="#investigations">
               ↓ View investigations
@@ -1420,12 +1434,34 @@
       </div>
     </section>
 
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About me</h2>
+        </div>
+
+        <div class="about-text">
+          <p>I'm a cybersecurity student building hands-on skills in security monitoring, troubleshooting, and incident investigation through labs and training.</p>
+          <p>I'm now looking for remote IT support roles where I can help people solve technical problems, document clearly, and keep learning toward a long-term career in security operations. I enjoy working with people as much as with systems, and I explain technical issues in plain language.</p>
+
+          <div class="project-tech about-tags">
+            <span class="tech-badge">IT Support</span>
+            <span class="tech-badge">Troubleshooting</span>
+            <span class="tech-badge">Windows &amp; Linux</span>
+            <span class="tech-badge">Incident Triage</span>
+            <span class="tech-badge">Clear Communication</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Skills -->
     <section id="skills">
       <div class="container">
         <div class="section-head">
           <h2>Technical skills &amp; tools</h2>
-          <p>Proficiency developed through hands-on labs, real-time SOC alert investigations, and security projects across multiple platforms and threat landscapes.</p>
+          <p>Proficiency developed through hands-on labs, simulated SOC cases, and security projects across multiple platforms.</p>
         </div>
 
         <p class="skills-intro">SIEM · Threat Analysis · Network Monitoring · Malware Investigation · Security Automation · Incident Response</p>
@@ -1464,14 +1500,10 @@
           <div class="skill-tile" tabindex="0">
             <div class="skill-name">LetsDefend</div>
             <div class="skill-category">SOC Training</div>
-            <div class="skill-tooltip">Completed 50+ real-world SOC cases covering alert triage, evidence correlation, and incident response workflows.</div>
+            <div class="skill-tooltip">Completed 50+ simulated lab SOC cases covering alert triage, evidence correlation, and incident response workflows.</div>
           </div>
 
-          <div class="skill-tile" tabindex="0">
-            <div class="skill-name">Shodan</div>
-            <div class="skill-category">Asset Discovery</div>
-            <div class="skill-tooltip">Used for internet-facing asset enumeration, exposure assessment, and security research during compliance audits.</div>
-          </div>
+    
 
           <div class="skill-tile" tabindex="0">
             <div class="skill-name">any.run</div>
@@ -1487,7 +1519,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Alert investigations</h2>
-          <p>Real alert cases demonstrating SOC analyst workflow: evidence correlation, threat assessment, and incident response decision-making. Click a card to read the full investigation.</p>
+          <p>LetsDefend lab investigations demonstrating SOC analyst workflow: evidence correlation, threat assessment, and incident response decision-making. Click a card to read the full investigation.</p>
         </div>
 
         <div class="investigations-grid">
@@ -1809,7 +1841,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Certifications &amp; training</h2>
-          <p>Industry-recognized credentials and structured learning paths in security operations, Python automation, and applied cybersecurity.</p>
+          <p>Training and certifications in security operations, Python automation, and applied cybersecurity.</p>
         </div>
 
         <div class="certs-container">
@@ -1820,7 +1852,7 @@
             </button>
             <div class="cert-content" id="cert-1">
               <div class="cert-inner">
-                <p class="cert-text">Expected completion in September 2026. This vendor-neutral certification covers core security concepts, risk management, cryptography, and network defense — essential for SOC analyst advancement.</p>
+                <p class="cert-text">Currently studying for the exam.</p>
               </div>
             </div>
           </div>
@@ -1846,7 +1878,7 @@
             <div class="cert-content" id="cert-3">
               <div class="cert-inner">
                 <img src="LetsDefend Cert.jpeg" class="cert-img" alt="LetsDefend SOC analyst path certificate" />
-                <p class="cert-text">Completed 50+ real-world SOC cases on the LetsDefend platform. Gained practical experience in alert triage, evidence correlation, threat assessment, and incident response decision-making in a realistic SOC environment.</p>
+                <p class="cert-text">Completed 50+ simulated lab SOC cases on the LetsDefend platform. Gained practical experience in alert triage, evidence correlation, threat assessment, and incident response decision-making in a realistic SOC environment.</p>
               </div>
             </div>
           </div>
@@ -1872,7 +1904,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Get in touch</h2>
-          <p>Open to collaboration, mentorship opportunities, and SOC analyst roles. Let's connect.</p>
+          <p>Open to collaboration, mentorship opportunities, IT Support and Security roles. Let's connect.</p>
         </div>
 
         <div class="contact-grid">
@@ -1920,7 +1952,7 @@
 
           <h3>Architecture</h3>
           <ul>
-            <li><strong>Wazuh Manager:</strong> Ubuntu 20.04 LTS running Wazuh manager, agent, and Kibana dashboard</li>
+            <li><strong>Wazuh Manager:</strong> Ubuntu 20.04 LTS running Wazuh manager and agent</li>
             <li><strong>Agents:</strong> Deployed on Windows 10 and Windows Server 2022 for endpoint telemetry</li>
             <li><strong>Infrastructure:</strong> VirtualBox VMs on a single host, bridged networking for simulation</li>
           </ul>
@@ -1930,7 +1962,6 @@
             <li>Configured Wazuh agents to forward Windows Event Logs (Security, System, Application)</li>
             <li>Set up File Integrity Monitoring (FIM) on critical system directories</li>
             <li>Created custom detection rules based on MITRE ATT&CK techniques</li>
-            <li>Built Kibana dashboards for real-time alert visibility</li>
           </ul>
 
           <h3>Lessons Learned</h3>
@@ -1955,7 +1986,7 @@
           <p>Wazuh XML rule configuration using event log correlation and time-based grouping. Tested against both legitimate login sequences and simulated brute-force attacks using Hydra.</p>
 
           <h3>Results</h3>
-          <p>Rule successfully detected attack patterns while maintaining low false-positive rates. Refined thresholds based on baseline activity patterns to avoid alert fatigue.</p>
+          <p>Rule successfully detected attack patterns. Refined thresholds based on baseline activity patterns to avoid alert fatigue.</p>
         `
       },
       stego: {
